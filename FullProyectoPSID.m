@@ -1088,8 +1088,8 @@ figure;
 imagesc(1:N_frames_validos,v_axis,micro_dB_4RX);
 
 axis xy;
-colorbar;
-
+cb = colorbar;
+ylabel(cb, 'Potencia [dB]');
 clim([-60 0]);
 
 xlabel('Numero de frame');
@@ -1117,7 +1117,8 @@ figure;
 imagesc(t_frames,v_axis,micro_dB_4RX);
 
 axis xy;
-colorbar;
+cb = colorbar;
+ylabel(cb, 'Potencia [dB]');
 clim([-60 0]);
 
 xlabel('Tiempo [s]');
@@ -1199,7 +1200,8 @@ micro_dB_Slow = 10 * log10(micro_norm_Slow + eps);
 figure;
 imagesc(t_frames, v_axis, micro_dB_Slow);
 axis xy;
-colorbar;
+cb = colorbar;
+ylabel(cb, 'Potencia [dB]');
 clim([-60 0]);
 xlabel('Tiempo [s]');
 ylabel('Velocidad radial [m/s]');
@@ -1276,7 +1278,8 @@ micro_dB_SlowPocket = 10 * log10(micro_norm_SlowPocket + eps);
 figure;
 imagesc(t_frames, v_axis, micro_dB_SlowPocket);
 axis xy;
-colorbar;
+cb = colorbar;
+ylabel(cb, 'Potencia [dB]');
 clim([-60 0]);
 xlabel('Tiempo [s]');
 ylabel('Velocidad radial [m/s]');
@@ -1285,13 +1288,19 @@ title('Mapa micro-Doppler - SlowPocket - RX1 + RX2 + RX3 + RX4');
 %% 18. Figura comparativa sincronizada (Fast vs Slow vs SlowPocket)
 % Visualización sincronizada de los tres mapas micro-Doppler combinados 
 % para su comparación directa bajo los mismos ejes temporales y de velocidad.
+%
+% Notación de la escala de color (Potencia [dB]):
+%   0 dB   (Amarillo)     : Máxima reflexión de energía (Torso / Pecho)
+%  -20 dB  (Verde / Cian) : Reflexiones secundarias (Extremidades: Brazos / Piernas)
+%  -60 dB  (Azul oscuro)  : Piso de ruido térmico y clutter residual
 
 figure('Name', 'Comparativa Micro-Doppler Multicanal', 'Position', [100, 100, 950, 750]);
 
 subplot(3, 1, 1);
 imagesc(t_frames, v_axis, micro_dB_Fast);
 axis xy;
-colorbar;
+cb1 = colorbar;
+ylabel(cb1, 'Potencia [dB]');
 clim([-60 0]);
 title('1. Caminata Rápida (Fast) - RX1 + RX2 + RX3 + RX4');
 xlabel('Tiempo [s]');
@@ -1300,7 +1309,8 @@ ylabel('Velocidad [m/s]');
 subplot(3, 1, 2);
 imagesc(t_frames, v_axis, micro_dB_Slow);
 axis xy;
-colorbar;
+cb2 = colorbar;
+ylabel(cb2, 'Potencia [dB]');
 clim([-60 0]);
 title('2. Caminata Lenta (Slow) - RX1 + RX2 + RX3 + RX4');
 xlabel('Tiempo [s]');
@@ -1309,7 +1319,8 @@ ylabel('Velocidad [m/s]');
 subplot(3, 1, 3);
 imagesc(t_frames, v_axis, micro_dB_SlowPocket);
 axis xy;
-colorbar;
+cb3 = colorbar;
+ylabel(cb3, 'Potencia [dB]');
 clim([-60 0]);
 title('3. Manos en Bolsillos (SlowPocket) - RX1 + RX2 + RX3 + RX4');
 xlabel('Tiempo [s]');
